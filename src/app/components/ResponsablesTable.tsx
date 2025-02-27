@@ -9,7 +9,7 @@ interface ResponsableTableProps {
 const ResponsableTable = ({ responsables }: ResponsableTableProps) => {
   return (
     <div className="mx-12">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Lista de Responsables</h2>
+      <h2 className="text-2xl font-semibold mb-4 mt-2 text-center">Lista de Responsables</h2>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200 shadow-md rounded-lg">
           <thead className="bg-gray-100">
