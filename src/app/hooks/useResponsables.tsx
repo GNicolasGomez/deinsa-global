@@ -9,7 +9,7 @@ export function useResponsables() {
 
   useEffect(() => {
     const fetchResponsables = async () => {
-      setLoading(true); // Iniciar el estado de carga
+      setLoading(true);
       try {
         const res = await fetch("/api/responsables");
 
@@ -18,16 +18,21 @@ export function useResponsables() {
         }
 
         const { data } = await res.json();
-        setResponsables(data); // Actualizamos el state
-      } catch (err: any) {
-        setError(err.message); // Guardar el mensaje de error
+        setResponsables(data);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        } else {
+          setError("Error desconocido");
+        }
       } finally {
-        setLoading(false); // Finalizar el estado de carga
+        setLoading(false);
       }
     };
 
-    fetchResponsables(); // Llamar a la función para obtener los responsables
+    fetchResponsables();
   }, []);
 
   return { responsables, loading, error };
 }
+
