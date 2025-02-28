@@ -1,15 +1,19 @@
-'use client'
+"use client";
+import dynamic from "next/dynamic";
 import { useResponsables } from "@/app/hooks/useResponsables";
 import LoadingError from "./components/LoadingError";
-import ResponsableTable from "./components/ResponsablesTable";
+
+// Cargar dinámicamente sin SSR
+const ResponsableTable = dynamic(() => import("./components/ResponsablesTable"), {
+  ssr: false,
+});
 
 export default function ResponsableTableContainer() {
   const { responsables, loading, error } = useResponsables();
 
-  return (
-    <>
-    {loading && error && <LoadingError loading={loading} error={error} />}
-    <ResponsableTable responsables={responsables} />
-    </>
-  );
+  if (loading || error) {
+    return <LoadingError loading={loading} error={error} />;
+  }
+
+  return <ResponsableTable responsables={responsables} />;
 }

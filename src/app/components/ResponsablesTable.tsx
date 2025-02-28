@@ -1,4 +1,3 @@
-'use client'
 import { Responsable } from "@/app/interfaces/Responsable";
 import ResponsableRow from "./ResponsableRow";
 
